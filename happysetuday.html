@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Happy Setu Day</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Special+Elite&display=swap"
+      rel="stylesheet">
+
+<style>
+
+:root{
+  --red:#b0122b;
+  --deep:#6c0d22;
+  --paper:#fbf6ee;
+  --cream:#f3e7d3;
+  --gold:#e2a93b;
+  --gold2:#a8741a;
+  --ink:#7a1426;
+
+  --wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='14'%3E%3Cpath d='M0 7Q12-3 24 7T48 7' fill='none' stroke='%23b0122b' stroke-width='2.5'/%3E%3C/svg%3E")
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent
+}
+
+html,body{
+  margin:0;
+  height:100%;
+  background:#1a070c
+}
+
+body{
+  display:grid;
+  place-items:center;
+  font-family:'Caveat','Segoe Script',cursive;
+  color:var(--ink);
+  overflow:hidden
+}
+
+button{
+  font:inherit;
+  cursor:pointer
+}
+
+:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:3px
+}
+
+.book{
+  position:relative;
+  width:min(100vw,480px);
+  height:min(100dvh,900px);
+  overflow:hidden;
+  background:var(--paper);
+  box-shadow:0 25px 80px #000a
+}
+
+.page{
+  position:absolute;
+  inset:0;
+
+  padding:
+    calc(76px + env(safe-area-inset-top,0px))
+    28px
+    calc(56px + env(safe-area-inset-bottom,0px));
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  overflow-y:auto;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateX(40px);
+
+  transition:
+    opacity .55s,
+    transform .55s,
+    visibility 0s .55s
+}
+
+.page.active{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+
+  transition:
+    opacity .55s,
+    transform .55s
+}
+
+.page.back{
+  transform:translateX(-40px)
+}
+
+
+/* =========================
+   PAPER PAGES
+========================= */
+
+.paper::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:52px;
+  height:14px;
+
+  background:var(--wave) repeat-x;
+
+  pointer-events:none
+}
+
+.paper::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:30px;
+  height:14px;
+
+  background:var(--wave) repeat-x;
+
+  pointer-events:none
+}
+
+.seal{
+  position:absolute;
+  top:12px;
+  left:50%;
+
+  margin-left:-30px;
+
+  width:60px;
+  height:60px;
+
+  border-radius:50%;
+
+  z-index:3;
+
+  display:grid;
+  place-items:center;
+
+  color:#7a3c0a;
+  font-size:24px;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #f6cf72,
+      #e2a93b 60%,
+      #a8741a
+    );
+
+  border:3px solid #c58d21;
+
+  box-shadow:0 5px 10px #0004
+}
+
+.seal::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:-40px;
+  width:0;
+  height:0;
+  border:0
+}
+
+h1,h2{
+  margin:0;
+  color:var(--red);
+  line-height:.95
+}
+
+h1{
+  font-size:clamp(3rem,15vw,4.2rem)
+}
+
+h2{
+  font-size:clamp(2.4rem,11vw,3.2rem)
+}
+
+p{
+  margin:0
+}
+
+.txt{
+  font-size:1.55rem;
+  line-height:1.3;
+  text-align:left;
+  max-width:370px;
+  margin:20px 0
+}
+
+.sig{
+  font-size:1.9rem;
+  align-self:flex-end;
+  text-align:right;
+  margin-right:6px
+}
+
+.small{
+  font-size:1.5rem;
+  opacity:.85;
+  margin-top:18px
+}
+
+
+/* =========================
+   COVER
+========================= */
+
+.cover{
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      #c41a3c,
+      #8a0e26 60%,
+      #4d0817
+    );
+
+  color:#fff
+}
+
+.env{
+  position:relative;
+
+  width:min(300px,80vw);
+  height:200px;
+
+  margin-top:40px;
+
+  cursor:pointer;
+
+  border:0;
+  background:none;
+  padding:0
+}
+
+.env .back{
+  position:absolute;
+  inset:0;
+
+  background:#9d0f28;
+
+  border-radius:4px;
+
+  box-shadow:0 22px 40px #0008
+}
+
+.env .ltr{
+  position:absolute;
+
+  left:8%;
+  right:8%;
+  top:10px;
+  bottom:10px;
+
+  background:var(--paper);
+
+  z-index:1;
+
+  transition:transform .9s .35s;
+
+  display:grid;
+  place-items:center;
+
+  font-size:1.6rem;
+
+  color:var(--red)
+}
+
+.env .front{
+  position:absolute;
+  inset:0;
+
+  z-index:2;
+
+  background:
+    linear-gradient(
+      to top right,
+      transparent 49%,
+      #a8102c 50%
+    )
+    left/50% 100% no-repeat,
+
+    linear-gradient(
+      to top left,
+      transparent 49%,
+      #8a0c24 50%
+    )
+    right/50% 100% no-repeat;
+
+  border-radius:4px
+}
+
+.env .flap{
+  position:absolute;
+
+  left:0;
+  right:0;
+  top:0;
+
+  height:62%;
+
+  z-index:4;
+
+  background:#d01a3c;
+
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+
+  transform-origin:top;
+
+  transition:transform .7s
+}
+
+.env.open .flap{
+  transform:rotateX(180deg);
+  z-index:0
+}
+
+.env.open .ltr{
+  transform:translateY(-95px)
+}
+
+.env .wax{
+  position:absolute;
+
+  left:50%;
+  top:62%;
+
+  width:66px;
+  height:66px;
+
+  margin:-33px 0 0 -33px;
+
+  z-index:5;
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  font-size:26px;
+
+  color:#7a3c0a;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #f6cf72,
+      #e2a93b 60%,
+      #a8741a
+    );
+
+  border:3px solid #c58d21;
+
+  box-shadow:0 5px 12px #0006;
+
+  transition:
+    transform .5s,
+    opacity .5s;
+
+  animation:beat 1.8s infinite
+}
+
+.env.open .wax{
+  transform:scale(1.6) rotate(25deg);
+  opacity:0;
+  animation:none
+}
+
+.btn{
+  border:0;
+
+  border-radius:999px;
+
+  padding:11px 24px;
+
+  font-size:1.4rem;
+
+  font-weight:700;
+
+  background:var(--red);
+
+  color:#fff;
+
+  box-shadow:0 8px 20px #0003;
+
+  margin-top:26px
+}
+
+.cover .btn{
+  background:#fff4d7;
+  color:var(--red)
+}
+
+
+/* =========================
+   AWARD
+========================= */
+
+.cert{
+  background:#fffbea;
+
+  border:10px double var(--gold);
+
+  padding:26px 20px 18px;
+
+  width:min(330px,100%);
+
+  box-shadow:0 14px 28px #7a142633;
+
+  transform:rotate(-1.5deg);
+
+  color:#8a5a00
+}
+
+.cert h2{
+  color:#c88a14;
+
+  text-shadow:2px 2px 0 #fff;
+
+  font-size:clamp(2.6rem,12vw,3.6rem);
+
+  margin:6px 0
+}
+
+.cert svg{
+  width:64px;
+
+  display:block;
+
+  margin:10px auto 0
+}
+
+
+/* =========================
+   MEMORY PAGE
+========================= */
+
+.memory-page{
+  justify-content:flex-start;
+
+  padding-top:85px;
+
+  overflow-y:auto
+}
+
+.memory-page h2{
+  margin-bottom:15px;
+
+  text-align:center
+}
+
+.memory-grid{
+  width:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  gap:18px;
+
+  padding:10px 0 25px
+}
+
+.memory-card{
+  width:min(330px,90%);
+
+  background:#fff;
+
+  padding:10px 10px 15px;
+
+  box-shadow:0 10px 24px #7a142640;
+
+  border:1px solid #eadfca
+}
+
+.memory-card:nth-child(1){
+  transform:rotate(-2deg)
+}
+
+.memory-card:nth-child(2){
+  transform:rotate(2deg)
+}
+
+.memory-card:nth-child(3){
+  transform:rotate(-1deg)
+}
+
+.memory-card img{
+  width:100%;
+
+  height:190px;
+
+  object-fit:cover;
+
+  display:block
+}
+
+.memory-card p{
+  font-size:1.4rem;
+
+  color:#7a1426;
+
+  margin-top:8px;
+
+  text-align:center
+}
+
+
+/* =========================
+   TYPEWRITER PAGE
+========================= */
+
+.tw{
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #f6e4b8 0 22px,
+      #fff6dc 22px 44px
+    )
+}
+
+.tw::before{
+  content:"";
+
+  position:absolute;
+
+  inset:0 0 0 46%;
+
+  background:
+    var(--deep)
+    radial-gradient(
+      #f1d9a8 2px,
+      transparent 2.5px
+    )
+    0 0/26px 26px
+}
+
+.tw>*{
+  position:relative
+}
+
+.note{
+  font-family:
+    'Special Elite',
+    'Courier New',
+    monospace;
+
+  font-size:1.02rem;
+
+  line-height:1.6;
+
+  text-align:left;
+
+  background:var(--paper);
+
+  padding:24px 20px;
+
+  min-height:250px;
+
+  width:100%;
+
+  max-width:330px;
+
+  box-shadow:0 12px 24px #0006;
+
+  color:#5a1020
+}
+
+.note::after{
+  content:"▌";
+
+  animation:blink 1s infinite
+}
+
+.frame{
+  width:150px;
+  height:185px;
+
+  margin-top:18px;
+
+  border:10px solid var(--gold);
+
+  outline:3px solid var(--gold2);
+
+  border-radius:
+    50% 50% 6px 6px/
+    42% 42% 6px 6px;
+
+  box-shadow:0 14px 28px #0007
+}
+
+
+/* =========================
+   LIST PAGE
+========================= */
+
+.list{
+  justify-content:flex-start
+}
+
+.list ol{
+  margin:14px 0 0;
+
+  padding:0;
+
+  list-style:none;
+
+  width:100%;
+
+  max-width:380px;
+
+  text-align:left;
+
+  counter-reset:n
+}
+
+.list li{
+  padding:5px 0 5px 34px;
+
+  position:relative;
+
+  font-size:1.45rem;
+
+  line-height:1.15;
+
+  border-bottom:
+    1.5px dashed #b0122b40
+}
+
+.list li::before{
+  content:"♥";
+
+  position:absolute;
+
+  left:4px;
+
+  color:var(--red)
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  bottom:
+    calc(
+      8px +
+      env(safe-area-inset-bottom,0px)
+    );
+
+  z-index:10;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:0 20px
+}
+
+.prog{
+  flex:1;
+
+  height:4px;
+
+  border-radius:9px;
+
+  background:#b0122b26
+}
+
+.prog span{
+  display:block;
+
+  height:100%;
+
+  width:0;
+
+  background:var(--gold);
+
+  border-radius:9px;
+
+  transition:width .5s
+}
+
+.circ{
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  border:0;
+
+  background:var(--red);
+
+  color:#fff;
+
+  font-size:1rem
+}
+
+.circ[hidden]{
+  display:none
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes beat{
+
+  15%{
+    transform:scale(1.15)
+  }
+
+  30%{
+    transform:scale(1)
+  }
+
+}
+
+@keyframes blink{
+
+  50%{
+    opacity:0
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+    animation:none!important;
+
+    transition-duration:.01s!important
+  }
+
+}
+
+
+/* =========================
+   MOBILE MEMORY PAGE
+========================= */
+
+@media(max-width:420px){
+
+  .memory-card{
+    width:92%
+  }
+
+  .memory-card img{
+    height:175px
+  }
+
+  .memory-card p{
+    font-size:1.3rem
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="book" id="book">
+
+
+<!-- =========================
+     PAGE 1 - COVER
+========================= -->
+
+<section class="page cover active">
+
+  <h2 style="color:#fff">
+    something made<br>
+    just for you by using claude <br>
+    hehehehehehehehehe
+  </h2>
+
+  <button
+    class="env"
+    id="env"
+    aria-label="Open the envelope"
+  >
+
+    <span class="back"></span>
+
+    <span class="ltr">♥</span>
+
+    <span class="front"></span>
+
+    <span class="flap"></span>
+
+    <span class="wax">♥</span>
+
+  </button>
+
+  <button
+    class="btn"
+    id="openBtn"
+  >
+    Open my letter(nhi khola gand tod dungi)
+  </button>
+
+</section>
+
+
+
+<!-- =========================
+     PAGE 2 - LETTER
+========================= -->
+
+<section class="page paper">
+
+  <div class="seal">♥</div>
+
+  <p
+    class="small"
+    style="margin:0"
+  >
+    <span id="nm"></span>,
+  </p>
+
+  <h1>
+    Happy<br>
+    Boyfriend's Day
+  </h1>
+
+  <p class="txt">
+
+    I love you a lot, thank you for always being
+    with me and all the support.
+
+    Thanks merse pitne ke baad bhi hasne ke liye.
+
+    Well once a gandu always a gandu.
+
+    And merko bhaut sare lip gloss dilate rehna,
+    khana bhi.
+
+  </p>
+
+  <p class="sig">
+
+    With all my love & beating,
+
+    <br>
+
+    <span id="fr"></span>
+
+  </p>
+
+  <button
+    class="btn"
+    data-go="1"
+  >
+    turn the page
+  </button>
+
+</section>
+
+
+
+<!-- =========================
+     PAGE 3 - AWARD
+========================= -->
+
+<section class="page paper">
+
+  <div class="seal">♥</div>
+
+  <div class="cert">
+
+    <p style="font-size:1.4rem">
+      Officially awarded to the
+    </p>
+
+    <h2>
+      Best<br>
+      Boyfriend<br>
+      Award
+    </h2>
+
+    <p style="font-size:1.4rem">
+      for being ridiculously caring,
+      funny and special
+    </p>
+
+    <svg
+      viewBox="0 0 70 80"
+      aria-hidden="true"
+    >
+
+      <circle
+        cx="35"
+        cy="28"
+        r="24"
+        fill="#c88a14"
+      />
+
+      <circle
+        cx="35"
+        cy="28"
+        r="17"
+        fill="none"
+        stroke="#fffbea"
+        stroke-width="2"
+      />
+
+      <path
+        d="M20 46l-8 32 23-10 23 10-8-32z"
+        fill="#b0122b"
+      />
+
+    </svg>
+
+  </div>
+
+  <button
+    class="btn"
+    data-go="1"
+  >
+    keep going
+  </button>
+
+</section>
+
+
+
+<!-- =========================
+     PAGE 4 - FAVOURITE MEMORIES
+========================= -->
+
+<section class="page paper memory-page">
+
+  <div class="seal">♥</div>
+
+  <h2>
+    Fav memories<br>
+    together
+  </h2>
+
+
+  <div class="memory-grid">
+
+
+    <!-- PHOTO 1 -->
+
+    <div class="memory-card">
+
+      <img
+        src="pic1.jpeg"
+        alt="Our favourite memory"
+      >
+
+      <p>
+        us being us ❤️
+      </p>
+
+    </div>
+
+
+    <!-- PHOTO 2 -->
+
+    <div class="memory-card">
+
+      <img
+        src="pic2.jpeg"
+        alt="Our favourite memory"
+      >
+
+      <p>
+        one of my favourite moments 🫶
+      </p>
+
+    </div>
+
+
+    <!-- PHOTO 3 -->
+
+    <div class="memory-card">
+
+      <img
+        src="pic3.jpeg"
+        alt="My favourite person"
+      >
+
+      <p>
+        my favourite person ❤️
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+  <p class="small">
+    every ordinary day feels better with you.
+  </p>
+
+
+  <button
+    class="btn"
+    data-go="1"
+  >
+    one more
+  </button>
+
+</section>
+
+
+
+<!-- =========================
+     PAGE 5 - TYPEWRITER
+========================= -->
+
+<section
+  class="page tw"
+  id="twp"
+>
+
+  <div class="seal">♥</div>
+
+  <div
+    class="note"
+    id="note"
+    aria-live="polite"
+  ></div>
+
+  <button
+    class="btn"
+    data-go="1"
+  >
+    read the last page
+  </button>
+
+</section>
+
+
+
+<!-- =========================
+     PAGE 6 - 10 THINGS
+========================= -->
+
+<section class="page paper list">
+
+  <div class="seal">♥</div>
+
+  <h2>
+    10 things I love<br>
+    about you
+  </h2>
+
+  <ol>
+
+    <li>
+      Ji apki sundar si ismile
+    </li>
+
+    <li>
+      Merko hasana jab ki mai chidi hui hu(gand pe laat marungi kisi din)
+    </li>
+
+    <li>
+      Baal kichne aur pitne ke baad bhi hasna
+    </li>
+
+    <li>
+      getting me lippis jab ki merpe already bhaut hai
+    </li>
+
+    <li>
+      makeouts
+    </li>
+
+    <li>
+      Holding my hand jabki ki drive karna hai(maut ka karan banega ye)
+    </li>
+
+    <li>
+      Hugging you randomly 
+    </li>
+
+    <li>
+      Apka iphone aur jordan
+    </li>
+
+    <li>
+      Apka banaya khana 
+    </li>
+
+    <li>
+      Just you
+    </li>
+
+  </ol>
+
+
+  <button
+    class="btn"
+    id="again"
+    style="margin-top:14px"
+  >
+    open it again
+  </button>
+
+</section>
+
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<div class="nav">
+
+  <button
+    class="circ"
+    id="back"
+    aria-label="Previous page"
+    hidden
+  >
+    ‹
+  </button>
+
+  <div class="prog">
+    <span id="bar"></span>
+  </div>
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================
+   PERSONALISE HERE
+========================= */
+
+var C = {
+
+  name:"mere pyare boyfriend",
+
+  from:"tingi",
+
+  typed:
+    "My love, dating you has been the best part of my life and I wish that you always tag along with me in all my happy moments. PS5 jarur dilaugi jab paise aayega."
+
+};
+
+
+/* =========================
+   BASIC SETUP
+========================= */
+
+var $ = function(s){
+  return document.querySelector(s)
+};
+
+var pages = []
+  .slice.call(
+    document.querySelectorAll('.page')
+  );
+
+var cur = 0;
+
+var tt = 0;
+
+
+/* =========================
+   SET PERSONALIZED TEXT
+========================= */
+
+$('#nm').textContent = C.name;
+
+$('#fr').textContent = C.from;
+
+
+/* =========================
+   PAGE STORAGE
+========================= */
+
+function store(k,v){
+
+  try{
+
+    localStorage.setItem(
+      'll:' + k,
+      v
+    );
+
+  }catch(e){}
+
+}
+
+
+function load(k){
+
+  try{
+
+    return localStorage.getItem(
+      'll:' + k
+    );
+
+  }catch(e){
+
+    return null
+
+  }
+
+}
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function show(i){
+
+  var old = cur;
+
+  cur = Math.max(
+    0,
+    Math.min(
+      i,
+      pages.length - 1
+    )
+  );
+
+
+  pages.forEach(
+    function(p,n){
+
+      p.classList.toggle(
+        'active',
+        n === cur
+      );
+
+      p.classList.toggle(
+        'back',
+        n < cur
+      );
+
+    }
+  );
+
+
+  $('#bar').style.width =
+    (
+      (cur + 1)
+      /
+      pages.length
+      *
+      100
+    )
+    + '%';
+
+
+  $('#back').hidden =
+    cur === 0;
+
+
+  clearTimeout(tt);
+
+
+  if(
+    pages[cur].id === 'twp'
+  ){
+
+    type();
+
+  }
+
+
+  if(cur === 0){
+
+    $('#env')
+      .classList
+      .remove('open');
+
+  }
+
+
+  if(
+    old !== cur &&
+    pages[old].id !== 'twp'
+  ){
+
+    $('#note').textContent = '';
+
+  }
+
+}
+
+
+/* =========================
+   TYPEWRITER EFFECT
+========================= */
+
+function type(){
+
+  var n = $('#note');
+
+  var i = 0;
+
+  n.textContent = '';
+
+
+  (
+    function t(){
+
+      n.textContent =
+        C.typed.slice(
+          0,
+          i
+        );
+
+
+      if(
+        i++ <
+        C.typed.length
+      ){
+
+        tt =
+          setTimeout(
+            t,
+            34
+          );
+
+      }
+
+    }
+  )();
+
+}
+
+
+/* =========================
+   OPEN ENVELOPE
+========================= */
+
+function openEnv(){
+
+  var e = $('#env');
+
+
+  if(
+    e.classList.contains('open')
+  ){
+
+    return;
+
+  }
+
+
+  e.classList.add('open');
+
+
+  setTimeout(
+    function(){
+
+      show(1);
+
+    },
+    1100
+  );
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+$('#env').onclick =
+  openEnv;
+
+$('#openBtn').onclick =
+  openEnv;
+
+
+document
+  .querySelectorAll('[data-go]')
+  .forEach(
+    function(b){
+
+      b.onclick =
+        function(){
+
+          show(cur + 1);
+
+        };
+
+    }
+  );
+
+
+$('#back').onclick =
+  function(){
+
+    show(cur - 1);
+
+  };
+
+
+$('#again').onclick =
+  function(){
+
+    show(0);
+
+  };
+
+
+/* =========================
+   KEYBOARD NAVIGATION
+========================= */
+
+document.addEventListener(
+  'keydown',
+  function(e){
+
+    if(
+      e.target.isContentEditable
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      e.key === 'ArrowRight' &&
+      cur > 0
+    ){
+
+      show(cur + 1);
+
+    }
+
+
+    if(
+      e.key === 'ArrowLeft'
+    ){
+
+      show(cur - 1);
+
+    }
+
+  }
+);
+
+
+/* =========================
+   MOBILE SWIPE
+========================= */
+
+var sx = null;
+
+
+document.addEventListener(
+  'touchstart',
+  function(e){
+
+    sx =
+      e.target.closest(
+        'input,[contenteditable]'
+      )
+      ?
+      null
+      :
+      e.changedTouches[0].clientX;
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+document.addEventListener(
+  'touchend',
+  function(e){
+
+    if(
+      sx === null
+    ){
+
+      return;
+
+    }
+
+
+    var d =
+      e.changedTouches[0].clientX
+      -
+      sx;
+
+
+    if(
+      Math.abs(d) > 70 &&
+      (cur > 0 || d > 0)
+    ){
+
+      show(
+        cur +
+        (
+          d < 0
+          ?
+          1
+          :
+          -1
+        )
+      );
+
+    }
+
+
+    sx = null;
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* =========================
+   START AT PAGE 1
+========================= */
+
+show(0);
+
+</script>
+
+</body>
+</html>
